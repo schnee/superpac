@@ -1,10 +1,12 @@
+#!/usr/bin/Rscript
+
 require(mapproj)
 require(ggplot2)
 require(grid)
 library(maps)
 library(plyr)
 
-pac <- read.csv("/Users/bschneeman/Downloads/committee_summary.csv", header=TRUE)
+pac <- read.csv("./committee_summary.csv", header=TRUE)
 
 p <- pac
 
@@ -25,7 +27,7 @@ qs = quantile(pdata$Sum, c(0.0, 0.2, 0.4, 0.6, 0.8, 1.0))
 qsf = sprintf("$%.2f", qs)
 qlab = paste(head(qsf, -1), tail(qsf, -1), sep=' - ')
 
-pdata$Sum_q <- cut(pdata$Sum, qa, labels=qlab, include.lowest=TRUE)
+pdata$Sum_q <- cut(pdata$Sum, qs, labels=qlab, include.lowest=TRUE)
 
 pal <- colorRampPalette(c("grey80", "darkred"))(5)
 
