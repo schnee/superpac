@@ -22,6 +22,7 @@ pdata$statelc[9] <- "district of columbia"
 
 ggplot(pdata, aes(map_id = statelc, fill=Sum))+ geom_map(map=states_map) + expand_limits(x=states_map$long, y=states_map$lat)+coord_map("polyconic")
 
+ggplot(data=pdata, aes(x=state, y=Sum, fill=factor(state))) + geom_bar(width=1, stat="identity") + theme(legend.position="none") + labs(x="State", y="Receipts") + ggtitle("SuperPAC Receipts by State Comparison")
 
 qs = quantile(pdata$Sum, c(0.0, 0.2, 0.4, 0.6, 0.8, 1.0))
 qsf = sprintf("$%.2f", qs)
