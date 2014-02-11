@@ -30,9 +30,15 @@ qlab = paste(head(qsf, -1), tail(qsf, -1), sep=' - ')
 
 pdata$Sum_q <- cut(pdata$Sum, qs, labels=qlab, include.lowest=TRUE)
 
-pal <- colorRampPalette(c("grey80", "darkred"))(5)
+pal <- colorRampPalette(c("grey80", "darkgreen"))(5)
 
 clean_theme <- theme(axis.title = element_blank(), axis.text=element_blank(), panel.background=element_blank(), panel.grid=element_blank(), axis.ticks.length = unit(0, "cm"), complete=TRUE)
 
 
-ggplot(pdata, aes(map_id = statelc, fill=Sum_q))+ geom_map(map=states_map, colour="black") + scale_fill_manual(values=pal) + expand_limits(x=states_map$long, y=states_map$lat)+coord_map("polyconic") + labs(fill="Receipts", x="Longitude", y="Latitude") + ggtitle("SuperPAC Receipts by State\nof Registration") + clean_theme
+ggplot(pdata, aes(map_id = statelc, fill=Sum_q))+ geom_map(map=states_map, colour="black") + 
+  scale_fill_manual(values=pal) + 
+  expand_limits(x=states_map$long, y=states_map$lat)+
+  coord_map("polyconic") + 
+  labs(fill="Receipts", x="Longitude", y="Latitude") + 
+  ggtitle("SuperPAC Receipts by State\nof Registration") + 
+  clean_theme
