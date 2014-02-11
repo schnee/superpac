@@ -20,6 +20,8 @@ pdata$statelc <- tolower(state.name[match(pdata$state, state.abb)])
 
 pdata$statelc[9] <- "district of columbia"
 
+pdata = subset(pdata, state!="DC")
+
 ggplot(pdata, aes(map_id = statelc, fill=Sum))+ geom_map(map=states_map) + expand_limits(x=states_map$long, y=states_map$lat)+coord_map("polyconic")
 
 ggplot(data=pdata, aes(x=state, y=Sum, fill=factor(state))) + geom_bar(width=1, stat="identity") + theme(legend.position="none") + labs(x="State", y="Receipts") + ggtitle("SuperPAC Receipts by State Comparison")
@@ -33,7 +35,6 @@ pdata$Sum_q <- cut(pdata$Sum, qs, labels=qlab, include.lowest=TRUE)
 pal <- colorRampPalette(c("grey80", "darkgreen"))(5)
 
 clean_theme <- theme(axis.title = element_blank(), axis.text=element_blank(), panel.background=element_blank(), panel.grid=element_blank(), axis.ticks.length = unit(0, "cm"), complete=TRUE)
-
 
 ggplot(pdata, aes(map_id = statelc, fill=Sum_q))+ geom_map(map=states_map, colour="black") + 
   scale_fill_manual(values=pal) + 
