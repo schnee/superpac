@@ -29,7 +29,7 @@ pdata.noDC = subset(pdata, state!="DC")
 ggplot(pdata.noDC, aes(x=state, y=Sum)) + 
   geom_bar(width=1, stat="identity") + 
   theme(legend.position="none") + labs(x="State", y="Receipts") + 
-  ggtitle("SuperPAC Receipts by State Comparison")
+  ggtitle("SuperPAC Receipts by State Comparison\nDC omitted")
 
 ggplot(pdata.noDC, aes(map_id = statelc, fill=Sum)) + 
   geom_map(map=states_map) + 
