@@ -11,10 +11,11 @@ pac <- read.csv("./committee_summary.csv", header=TRUE)
 p <- pac
 names(p)[12] <- "receipts"
 
-superpac.spend <- ddply(p, "state", summarize, sd = sum(IEs.support.dems, na.rm=TRUE), 
-            sr=sum(IEs.support.reps, na.rm=T),
-            od = sum(IEs.oppose.dems, na.rm=T),
-            or = sum(IEs.oppose.reps, na.rm=T))
+superpac.spend <- ddply(p, "state", summarize, 
+                        sd = sum(IEs.support.dems, na.rm=TRUE), 
+                        sr=sum(IEs.support.reps, na.rm=T),
+                        od = sum(IEs.oppose.dems, na.rm=T),
+                        or = sum(IEs.oppose.reps, na.rm=T))
 
 states_map <- map_data("state")
 
