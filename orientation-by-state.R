@@ -7,8 +7,8 @@ require(grid)
 require(mapproj)
 require(scales)
 
-pac <- read.csv("./committee_summary.csv", header=TRUE)
-p <- pac
+p <- read.csv("./committee_summary.csv", header=TRUE)
+
 names(p)[12] <- "receipts"
 
 superpac.spend <- ddply(p, "state", summarize, 
