@@ -1,7 +1,7 @@
 #!/usr/bin/Rscript
 
 require(ggplot2)
-require(plyr)
+require(dplyr)
 require(maps)
 require(grid)
 require(mapproj)
@@ -11,11 +11,20 @@ p <- read.csv("./committee_summary.csv", header=TRUE)
 
 names(p)[12] <- "receipts"
 
-superpac.spend <- ddply(p, "state", summarize, 
-                        sd = sum(IEs.support.dems, na.rm=TRUE), 
-                        sr=sum(IEs.support.reps, na.rm=T),
-                        od = sum(IEs.oppose.dems, na.rm=T),
-                        or = sum(IEs.oppose.reps, na.rm=T))
+superpac.spend = pac %.% 
+  group_by(state) %.% 
+  summarise(or=sum(IEs.oppose.reps), 
+            od=sum(IEs.oppose.dems), 
+            sr=sum(IEs.support.reps), 
+            sd=sum(IEs.support.dems)) %.%
+  arrange(state)
+
+
+# superpac.spend <- ddply(p, "state", summarize, 
+#                         sd = sum(IEs.support.dems, na.rm=TRUE), 
+#                         sr=sum(IEs.support.reps, na.rm=T),
+#                         od = sum(IEs.oppose.dems, na.rm=T),
+#                         or = sum(IEs.oppose.reps, na.rm=T))
 
 states_map <- map_data("state")
 
