@@ -46,7 +46,7 @@ ggplot(superpac.spend, aes(map_id = statelc, fill=support)) +
                        mid="white",
                        labels=c("Democratic","Mostly Democratic", "Even", "Mostly Republican", "Republican")) + 
   labs(fill="Supporting\nOrientation") + 
-  ggtitle("Statewise Spending Orientation\n[Supporting]") +
+  ggtitle("Statewise Spending Orientation\n2011-2012 Election Cycle\n[Supporting]") +
   clean_theme
 
 ggplot(superpac.spend, aes(map_id = statelc, fill=oppose)) + 
@@ -58,5 +58,5 @@ ggplot(superpac.spend, aes(map_id = statelc, fill=oppose)) +
                        mid="white",
                        labels=c("Democratic","Mostly Democratic", "Even", "Mostly Republican", "Republican")) + 
   labs(fill="Opposing\nOrientation") + 
-  ggtitle("Statewise Spending Orientation\n[Opposing]") +
+  ggtitle("Statewise Spending Orientation\n2011-2012 Election Cycle\n[Opposing]") +
   clean_theme
